@@ -17,6 +17,10 @@ type Car = {
   alternateAdUrl?: string;
   image?: string;
   baseline?: boolean;
+  nearby?: boolean;
+  location?: string;
+  listingDetails?: string;
+  taxEstimated?: boolean;
 };
 
 const cars: Car[] = [
@@ -146,6 +150,41 @@ const cars: Car[] = [
     adUrl: "https://www.donedeal.ie/cars-for-sale/151-vw-tiguan-2-0tdi-new-nct-warranty/41838393",
     image: "/car-comparison-site/vw-tiguan-2015-206k.webp",
   },
+  {
+    name: "Volkswagen Tiguan 2.0 TDI",
+    short: "VW Tiguan Bray (217k)",
+    year: "2015",
+    price: 9995,
+    mileage: "217,371 km",
+    tax: 280,
+    taxEstimated: true,
+    insurance: [500, 650],
+    economy: 5.3,
+    fuel: "Diesel",
+    maintenance: [1100, 1900],
+    adUrl: "https://www.donedeal.ie/cars-for-sale/volkswagen-tiguan-2015-2-0-tdi-full-service-hist/42374898",
+    image: "/car-comparison-site/vw-tiguan-2015-bray.webp",
+    nearby: true,
+    location: "Hills of Bray",
+    listingDetails: "Full service history · verified history · 1-year dealer warranty · gearbox and NCT not shown · tax estimated",
+  },
+  {
+    name: "Volvo XC60 ES",
+    short: "Volvo XC60 Dublin (191k)",
+    year: "2015",
+    price: 10450,
+    mileage: "191,455 km",
+    tax: 200,
+    insurance: [500, 650],
+    economy: 4.5,
+    fuel: "Diesel",
+    maintenance: [1300, 2300],
+    adUrl: "https://www.donedeal.ie/cars-for-sale/volvo-xc60-aa-approved/42213105",
+    image: "/car-comparison-site/volvo-xc60-2015-dublin.webp",
+    nearby: true,
+    location: "Long Mile Motors, Dublin 8",
+    listingDetails: "Manual · NCT Aug 2027 · one owner · Irish car · verified history · AA inspected · warranty advertised",
+  },
 ];
 
 const euro = (amount: number) =>
@@ -199,10 +238,10 @@ export default function Home() {
           <table>
             <thead><tr><th>Car</th><th>Mileage</th><th>Fuel</th><th>Tax</th><th>Insurance</th><th>Maintenance</th><th>Annual total</th><th>vs Polo</th><th>vs Polo excl. maintenance</th></tr></thead>
             <tbody>{rows.map((car) => <tr key={car.name} className={car.baseline ? "baseline" : ""}>
-              <th scope="row"><span className="car-year">{car.year}</span>{car.short}</th>
+              <th scope="row"><span className="car-year">{car.year}</span>{car.short}{car.nearby && <span className="nearby-badge">Nearby</span>}</th>
               <td>{car.mileage}</td>
               <td>{euro(car.fuelCost)}<small>{car.economy.toFixed(1)} L / 100 km</small></td>
-              <td>{euro(car.tax)}</td>
+              <td>{car.taxEstimated ? `Est. ${euro(car.tax)}` : euro(car.tax)}</td>
               <td>{car.insurance[0] === car.insurance[1] ? euro(car.insurance) : `${euro(car.insurance[0])}–${euro(car.insurance[1])}`}</td>
               <td>{euro(car.maintenance)}<small>Estimated reserve</small></td>
               <td className="total">{euro(car.total)}</td>
@@ -218,6 +257,7 @@ export default function Home() {
           <div><div className="eyebrow">Original listings</div><h2 id="listing-heading">See the cars in the ads</h2></div>
           <p>Photos and listing details can change if the seller updates or removes an ad.</p>
         </div>
+        <p className="nearby-legend"><span className="nearby-badge">Nearby</span> Seller is in Bray or nearby Dublin 8. This marks convenience only, not a recommendation.</p>
         <div className="listing-grid">
           {cars.filter((car) => car.adUrl && car.image).map((car) => (
             <article className="listing-card" key={car.name}>
@@ -225,7 +265,7 @@ export default function Home() {
                 <img src={car.image} alt={`${car.year} ${car.name} from its original listing`} loading="lazy" />
               </a>
               <span className="listing-copy">
-                <span><span className="car-year">{car.year}</span><strong>{car.short}</strong><small>{car.mileage} · {euro(car.price)}</small></span>
+                <span><span className="car-year">{car.year}</span><strong>{car.short}{car.nearby && <span className="nearby-badge">Nearby</span>}</strong><small>{car.mileage} · {euro(car.price)}</small>{car.location && <small>{car.location}</small>}{car.listingDetails && <small className="listing-details">{car.listingDetails}</small>}</span>
                 <span className="ad-links">
                   <a className="ad-link" href={car.adUrl} target="_blank" rel="noreferrer">Open ad <span aria-hidden="true">↗</span></a>
                   {car.alternateAdUrl && <a className="ad-link secondary" href={car.alternateAdUrl} target="_blank" rel="noreferrer">Carzone <span aria-hidden="true">↗</span></a>}

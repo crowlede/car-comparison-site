@@ -27,6 +27,7 @@ test("preserves the requested comparison experience", async () => {
     "vs Polo excl. maintenance",
     "Original listings",
     "Open ad",
+    "Nearby",
     "more",
     "less",
   ]) {
@@ -47,5 +48,9 @@ test("preserves the requested comparison experience", async () => {
   assert.match(page, /donedeal\.ie\/cars-for-sale\/volvo-xc60-2010-full-service-history\/41196023/);
   assert.match(page, /donedeal\.ie\/cars-for-sale\/2014-volvo-xc60\/42407355/);
   assert.match(page, /donedeal\.ie\/cars-for-sale\/151-vw-tiguan-2-0tdi-new-nct-warranty\/41838393/);
+  assert.match(page, /donedeal\.ie\/cars-for-sale\/volkswagen-tiguan-2015-2-0-tdi-full-service-hist\/42374898/);
+  assert.match(page, /donedeal\.ie\/cars-for-sale\/volvo-xc60-aa-approved\/42213105/);
+  assert.match(page, /taxEstimated: true/);
+  assert.match(page, /marks convenience only, not a recommendation/);
   assert.doesNotMatch(page, /buying advice|how-to/i);
 });

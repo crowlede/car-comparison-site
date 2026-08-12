@@ -26,7 +26,7 @@ test("preserves the requested comparison experience", async () => {
     "Mileage",
     "vs Polo excl. maintenance",
     "Original listings",
-    "Open original ad",
+    "Open ad",
     "more",
     "less",
   ]) {
@@ -41,5 +41,10 @@ test("preserves the requested comparison experience", async () => {
   assert.match(page, /carzone\.ie\/used-cars\/bmw\/x3\/fpa\/4502188/);
   assert.match(page, /carzone\.ie\/used-cars\/audi\/q5\/fpa\/4501126/);
   assert.match(page, /carzone\.ie\/used-cars\/volvo\/xc60\/fpa\/4450220/);
+  assert.match(page, /donedeal\.ie\/cars-for-sale\/volvo-xc60-new-nct-full-leather-serviced-\/42321876/);
+  assert.match(page, /donedeal\.ie\/cars-for-sale\/2014-volvo-xc60-2-0l-diesel-new-nct-06-2027\/42404123/);
+  assert.match(page, /donedeal\.ie\/cars-for-sale\/2012-volvo-xc60-d3-lux-automatic-new-nct\/42564899/);
+  assert.match(page, /donedeal\.ie\/cars-for-sale\/volvo-xc60-2010-full-service-history\/41196023/);
+  assert.match(page, /donedeal\.ie\/cars-for-sale\/2014-volvo-xc60\/42407355/);
   assert.doesNotMatch(page, /buying advice|how-to/i);
 });

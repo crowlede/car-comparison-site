@@ -14,6 +14,7 @@ type Car = {
   fuel: "Petrol" | "Diesel";
   maintenance: [number, number];
   adUrl?: string;
+  alternateAdUrl?: string;
   image?: string;
   baseline?: boolean;
 };
@@ -62,7 +63,7 @@ const cars: Car[] = [
   },
   {
     name: "Volvo XC60 2.0D",
-    short: "Volvo XC60",
+    short: "Volvo XC60 (333k)",
     year: "2015",
     price: 8950,
     mileage: "333,000 km",
@@ -71,8 +72,65 @@ const cars: Car[] = [
     economy: 6.4,
     fuel: "Diesel",
     maintenance: [1400, 2500],
-    adUrl: "https://www.carzone.ie/used-cars/volvo/xc60/fpa/4450220",
-    image: "/car-comparison-site/volvo-xc60.jpg",
+    adUrl: "https://www.donedeal.ie/cars-for-sale/volvo-xc60-new-nct-full-leather-serviced-/42321876",
+    alternateAdUrl: "https://www.carzone.ie/used-cars/volvo/xc60/fpa/4450220#Search",
+    image: "/car-comparison-site/volvo-xc60-2015-donedeal.jpg",
+  },
+  {
+    name: "Volvo XC60 2.0D 186k",
+    short: "Volvo XC60 (186k)",
+    year: "2014",
+    price: 8950,
+    mileage: "186,683 km",
+    tax: 200,
+    insurance: [500, 650],
+    economy: 6.4,
+    fuel: "Diesel",
+    maintenance: [1300, 2300],
+    adUrl: "https://www.donedeal.ie/cars-for-sale/2014-volvo-xc60-2-0l-diesel-new-nct-06-2027/42404123",
+    image: "/car-comparison-site/volvo-xc60-2014-low-mileage.jpg",
+  },
+  {
+    name: "Volvo XC60 D3 Lux automatic",
+    short: "Volvo XC60 D3 auto",
+    year: "2012",
+    price: 6650,
+    mileage: "263,000 km",
+    tax: 790,
+    insurance: [500, 650],
+    economy: 7.2,
+    fuel: "Diesel",
+    maintenance: [1500, 2700],
+    adUrl: "https://www.donedeal.ie/cars-for-sale/2012-volvo-xc60-d3-lux-automatic-new-nct/42564899",
+    image: "/car-comparison-site/volvo-xc60-2012-auto.jpg",
+  },
+  {
+    name: "Volvo XC60 2.4D",
+    short: "Volvo XC60 2.4D",
+    year: "2010",
+    price: 6450,
+    mileage: "223,698 km",
+    tax: 600,
+    insurance: [500, 650],
+    economy: 6.8,
+    fuel: "Diesel",
+    maintenance: [1600, 2800],
+    adUrl: "https://www.donedeal.ie/cars-for-sale/volvo-xc60-2010-full-service-history/41196023",
+    image: "/car-comparison-site/volvo-xc60-2010.jpg",
+  },
+  {
+    name: "Volvo XC60 2.0D 270k",
+    short: "Volvo XC60 (270k)",
+    year: "2014",
+    price: 5400,
+    mileage: "270,000 km",
+    tax: 200,
+    insurance: [500, 650],
+    economy: 6.4,
+    fuel: "Diesel",
+    maintenance: [1400, 2500],
+    adUrl: "https://www.donedeal.ie/cars-for-sale/2014-volvo-xc60/42407355",
+    image: "/car-comparison-site/volvo-xc60-2014-270k.jpg",
   },
 ];
 
@@ -148,13 +206,18 @@ export default function Home() {
         </div>
         <div className="listing-grid">
           {cars.filter((car) => car.adUrl && car.image).map((car) => (
-            <a className="listing-card" href={car.adUrl} target="_blank" rel="noreferrer" key={car.name}>
-              <img src={car.image} alt={`${car.year} ${car.name} from its Carzone listing`} loading="lazy" />
+            <article className="listing-card" key={car.name}>
+              <a className="listing-image-link" href={car.adUrl} target="_blank" rel="noreferrer">
+                <img src={car.image} alt={`${car.year} ${car.name} from its original listing`} loading="lazy" />
+              </a>
               <span className="listing-copy">
                 <span><span className="car-year">{car.year}</span><strong>{car.short}</strong><small>{car.mileage} · {euro(car.price)}</small></span>
-                <span className="ad-link">Open original ad <span aria-hidden="true">↗</span></span>
+                <span className="ad-links">
+                  <a className="ad-link" href={car.adUrl} target="_blank" rel="noreferrer">Open ad <span aria-hidden="true">↗</span></a>
+                  {car.alternateAdUrl && <a className="ad-link secondary" href={car.alternateAdUrl} target="_blank" rel="noreferrer">Carzone <span aria-hidden="true">↗</span></a>}
+                </span>
               </span>
-            </a>
+            </article>
           ))}
         </div>
       </section>

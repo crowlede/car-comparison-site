@@ -132,6 +132,20 @@ const cars: Car[] = [
     adUrl: "https://www.donedeal.ie/cars-for-sale/2014-volvo-xc60/42407355",
     image: "/car-comparison-site/volvo-xc60-2014-270k.jpg",
   },
+  {
+    name: "Volkswagen Tiguan 2.0 TDI Trend & Fun",
+    short: "VW Tiguan (206k)",
+    year: "2015",
+    price: 8950,
+    mileage: "205,625 km",
+    tax: 280,
+    insurance: [500, 650],
+    economy: 5.3,
+    fuel: "Diesel",
+    maintenance: [1100, 1900],
+    adUrl: "https://www.donedeal.ie/cars-for-sale/151-vw-tiguan-2-0tdi-new-nct-warranty/41838393",
+    image: "/car-comparison-site/vw-tiguan-2015-206k.webp",
+  },
 ];
 
 const euro = (amount: number) =>

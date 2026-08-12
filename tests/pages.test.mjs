@@ -46,5 +46,6 @@ test("preserves the requested comparison experience", async () => {
   assert.match(page, /donedeal\.ie\/cars-for-sale\/2012-volvo-xc60-d3-lux-automatic-new-nct\/42564899/);
   assert.match(page, /donedeal\.ie\/cars-for-sale\/volvo-xc60-2010-full-service-history\/41196023/);
   assert.match(page, /donedeal\.ie\/cars-for-sale\/2014-volvo-xc60\/42407355/);
+  assert.match(page, /donedeal\.ie\/cars-for-sale\/151-vw-tiguan-2-0tdi-new-nct-warranty\/41838393/);
   assert.doesNotMatch(page, /buying advice|how-to/i);
 });

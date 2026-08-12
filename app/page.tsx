@@ -79,17 +79,18 @@ export default function Home() {
     const fuelCost = (annualKm / 100) * car.economy * fuelPrice;
     const insurance = (car.insurance[0] + car.insurance[1]) / 2;
     const maintenance = (car.maintenance[0] + car.maintenance[1]) / 2;
-    return { ...car, fuelCost, insurance, maintenance, total: fuelCost + insurance + maintenance + car.tax };
+    const totalWithoutMaintenance = fuelCost + insurance + car.tax;
+    return { ...car, fuelCost, insurance, maintenance, totalWithoutMaintenance, total: totalWithoutMaintenance + maintenance };
   }), [annualKm]);
   const current = rows[0];
   const candidates = rows.slice(1);
   const leastExtra = [...candidates].sort((a, b) => a.total - b.total)[0];
   const lowestMileage = candidates.reduce((lowest, car) => Number(car.mileage.replace(/[^0-9]/g, "")) < Number(lowest.mileage.replace(/[^0-9]/g, "")) ? car : lowest);
   const middleChoice = candidates.find((car) => car.short === "Audi Q5") ?? candidates[0];
-  const costDifference = (car: (typeof rows)[number]) =>
-    car.total >= current.total
-      ? `${euro(car.total - current.total)} more`
-      : `${euro(current.total - car.total)} less`;
+  const costDifference = (amount: number, poloAmount: number) =>
+    amount >= poloAmount
+      ? `${euro(amount - poloAmount)} more`
+      : `${euro(poloAmount - amount)} less`;
 
   return (
     <main>
@@ -107,7 +108,7 @@ export default function Home() {
       </section>
 
       <section className="top-picks" aria-label="Quick read">
-        <article><span>Least extra to run</span><strong>{leastExtra.short}</strong><p>{costDifference(leastExtra)} a year versus the Polo.</p></article>
+        <article><span>Least extra to run</span><strong>{leastExtra.short}</strong><p>{costDifference(leastExtra.total, current.total)} a year versus the Polo.</p></article>
         <article><span>Lowest mileage</span><strong>{lowestMileage.short}</strong><p>{lowestMileage.mileage} on the ad.</p></article>
         <article><span>Middle-ground choice</span><strong>{middleChoice.short}</strong><p>A balanced pick from the current shortlist.</p></article>
       </section>
@@ -116,15 +117,17 @@ export default function Home() {
         <div className="section-heading"><div><div className="eyebrow">Annual running costs</div><h2>The yearly picture</h2></div><p>Fuel, annual motor tax, estimated insurance and a maintenance reserve. Excludes finance, parking and depreciation.</p></div>
         <div className="table-wrap">
           <table>
-            <thead><tr><th>Car</th><th>Fuel</th><th>Tax</th><th>Insurance</th><th>Maintenance</th><th>Annual total</th><th>vs Polo</th></tr></thead>
+            <thead><tr><th>Car</th><th>Mileage</th><th>Fuel</th><th>Tax</th><th>Insurance</th><th>Maintenance</th><th>Annual total</th><th>vs Polo</th><th>vs Polo excl. maintenance</th></tr></thead>
             <tbody>{rows.map((car) => <tr key={car.name} className={car.baseline ? "baseline" : ""}>
-              <th scope="row"><span className="car-year">{car.year}</span>{car.short}<small>{car.mileage}</small></th>
+              <th scope="row"><span className="car-year">{car.year}</span>{car.short}</th>
+              <td>{car.mileage}</td>
               <td>{euro(car.fuelCost)}<small>{car.economy.toFixed(1)} L / 100 km</small></td>
               <td>{euro(car.tax)}</td>
               <td>{car.insurance[0] === car.insurance[1] ? euro(car.insurance) : `${euro(car.insurance[0])}–${euro(car.insurance[1])}`}</td>
               <td>{euro(car.maintenance)}<small>Estimated reserve</small></td>
               <td className="total">{euro(car.total)}</td>
-              <td className={car.baseline ? "muted" : "difference"}>{car.baseline ? "Benchmark" : costDifference(car)}</td>
+              <td className={car.baseline ? "muted" : "difference"}>{car.baseline ? "Benchmark" : costDifference(car.total, current.total)}</td>
+              <td className={car.baseline ? "muted" : "difference"}>{car.baseline ? "Benchmark" : costDifference(car.totalWithoutMaintenance, current.totalWithoutMaintenance)}</td>
             </tr>)}</tbody>
           </table>
         </div>

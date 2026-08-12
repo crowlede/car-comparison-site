@@ -23,6 +23,8 @@ test("preserves the requested comparison experience", async () => {
     "Insurance",
     "Maintenance",
     "Estimated reserve",
+    "Mileage",
+    "vs Polo excl. maintenance",
     "more",
     "less",
   ]) {
@@ -32,5 +34,7 @@ test("preserves the requested comparison experience", async () => {
   assert.match(page, /maintenance: \[1300, 2300\]/);
   assert.match(page, /maintenance: \[1200, 2100\]/);
   assert.match(page, /maintenance: \[1400, 2500\]/);
+  assert.match(page, /totalWithoutMaintenance/);
+  assert.match(page, /costDifference\(car\.totalWithoutMaintenance, current\.totalWithoutMaintenance\)/);
   assert.doesNotMatch(page, /buying advice|how-to/i);
 });

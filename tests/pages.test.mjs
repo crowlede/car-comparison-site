@@ -28,6 +28,9 @@ test("preserves the requested comparison experience", async () => {
     "Original listings",
     "Open ad",
     "Nearby",
+    "Land Rover Discovery Sport",
+    "black half-leather",
+    "Timing-chain history needs verification",
     "more",
     "less",
   ]) {
@@ -50,6 +53,9 @@ test("preserves the requested comparison experience", async () => {
   assert.match(page, /donedeal\.ie\/cars-for-sale\/151-vw-tiguan-2-0tdi-new-nct-warranty\/41838393/);
   assert.match(page, /donedeal\.ie\/cars-for-sale\/volkswagen-tiguan-2015-2-0-tdi-full-service-hist\/42374898/);
   assert.match(page, /donedeal\.ie\/cars-for-sale\/volvo-xc60-aa-approved\/42213105/);
+  assert.match(page, /braymotors\.ie\/vehicle\?id=468kn/);
+  assert.match(page, /Dealer says the timing chain was recently replaced/);
+  assert.match(page, /Ask for the invoice, reason for replacement and supporting service history/);
   assert.match(page, /taxEstimated: true/);
   assert.match(page, /marks convenience only, not a recommendation/);
   assert.doesNotMatch(page, /buying advice|how-to/i);

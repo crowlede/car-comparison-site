@@ -20,6 +20,7 @@ type Car = {
   nearby?: boolean;
   location?: string;
   listingDetails?: string;
+  listingWarning?: string;
   taxEstimated?: boolean;
 };
 
@@ -185,6 +186,24 @@ const cars: Car[] = [
     location: "Long Mile Motors, Dublin 8",
     listingDetails: "Manual · NCT Aug 2027 · one owner · Irish car · verified history · AA inspected · warranty advertised",
   },
+  {
+    name: "Land Rover Discovery Sport",
+    short: "Discovery Sport Bray (171k)",
+    year: "2016",
+    price: 10950,
+    mileage: "170,938 km",
+    tax: 270,
+    insurance: [600, 800],
+    economy: 6.0,
+    fuel: "Diesel",
+    maintenance: [1600, 2800],
+    adUrl: "https://www.braymotors.ie/vehicle?id=468kn",
+    image: "/car-comparison-site/land-rover-discovery-sport-2016.jpg",
+    nearby: true,
+    location: "Bray Motors, Corke Abbey Avenue",
+    listingDetails: "Manual · black half-leather · NCT Aug 2027 · five previous owners · AA inspected · minimum 3-month warranty",
+    listingWarning: "Dealer says the timing chain was recently replaced. Ask for the invoice, reason for replacement and supporting service history.",
+  },
 ];
 
 const euro = (amount: number) =>
@@ -238,7 +257,7 @@ export default function Home() {
           <table>
             <thead><tr><th>Car</th><th>Mileage</th><th>Fuel</th><th>Tax</th><th>Insurance</th><th>Maintenance</th><th>Annual total</th><th>vs Polo</th><th>vs Polo excl. maintenance</th></tr></thead>
             <tbody>{rows.map((car) => <tr key={car.name} className={car.baseline ? "baseline" : ""}>
-              <th scope="row"><span className="car-year">{car.year}</span>{car.short}{car.nearby && <span className="nearby-badge">Nearby</span>}</th>
+              <th scope="row"><span className="car-year">{car.year}</span>{car.short}{car.nearby && <span className="nearby-badge">Nearby</span>}{car.listingWarning && <small className="listing-warning">Timing-chain history needs verification</small>}</th>
               <td>{car.mileage}</td>
               <td>{euro(car.fuelCost)}<small>{car.economy.toFixed(1)} L / 100 km</small></td>
               <td>{car.taxEstimated ? `Est. ${euro(car.tax)}` : euro(car.tax)}</td>
@@ -265,7 +284,7 @@ export default function Home() {
                 <img src={car.image} alt={`${car.year} ${car.name} from its original listing`} loading="lazy" />
               </a>
               <span className="listing-copy">
-                <span><span className="car-year">{car.year}</span><strong>{car.short}{car.nearby && <span className="nearby-badge">Nearby</span>}</strong><small>{car.mileage} · {euro(car.price)}</small>{car.location && <small>{car.location}</small>}{car.listingDetails && <small className="listing-details">{car.listingDetails}</small>}</span>
+                <span><span className="car-year">{car.year}</span><strong>{car.short}{car.nearby && <span className="nearby-badge">Nearby</span>}</strong><small>{car.mileage} · {euro(car.price)}</small>{car.location && <small>{car.location}</small>}{car.listingDetails && <small className="listing-details">{car.listingDetails}</small>}{car.listingWarning && <small className="listing-warning"><b>Check:</b> {car.listingWarning}</small>}</span>
                 <span className="ad-links">
                   <a className="ad-link" href={car.adUrl} target="_blank" rel="noreferrer">Open ad <span aria-hidden="true">↗</span></a>
                   {car.alternateAdUrl && <a className="ad-link secondary" href={car.alternateAdUrl} target="_blank" rel="noreferrer">Carzone <span aria-hidden="true">↗</span></a>}

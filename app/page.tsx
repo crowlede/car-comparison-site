@@ -13,6 +13,8 @@ type Car = {
   economy: number;
   fuel: "Petrol" | "Diesel";
   maintenance: [number, number];
+  adUrl?: string;
+  image?: string;
   baseline?: boolean;
 };
 
@@ -41,6 +43,8 @@ const cars: Car[] = [
     economy: 6.7,
     fuel: "Diesel",
     maintenance: [1300, 2300],
+    adUrl: "https://www.carzone.ie/used-cars/bmw/x3/fpa/4502188",
+    image: "/car-comparison-site/bmw-x3.jpg",
   },
   {
     name: "Audi Q5 2.0 TDI",
@@ -53,6 +57,8 @@ const cars: Car[] = [
     economy: 6.3,
     fuel: "Diesel",
     maintenance: [1200, 2100],
+    adUrl: "https://www.carzone.ie/used-cars/audi/q5/fpa/4501126",
+    image: "/car-comparison-site/audi-q5.jpg",
   },
   {
     name: "Volvo XC60 2.0D",
@@ -65,6 +71,8 @@ const cars: Car[] = [
     economy: 6.4,
     fuel: "Diesel",
     maintenance: [1400, 2500],
+    adUrl: "https://www.carzone.ie/used-cars/volvo/xc60/fpa/4450220",
+    image: "/car-comparison-site/volvo-xc60.jpg",
   },
 ];
 
@@ -130,6 +138,24 @@ export default function Home() {
               <td className={car.baseline ? "muted" : "difference"}>{car.baseline ? "Benchmark" : costDifference(car.totalWithoutMaintenance, current.totalWithoutMaintenance)}</td>
             </tr>)}</tbody>
           </table>
+        </div>
+      </section>
+
+      <section className="listings" aria-labelledby="listing-heading">
+        <div className="section-heading">
+          <div><div className="eyebrow">Original listings</div><h2 id="listing-heading">See the cars in the ads</h2></div>
+          <p>Photos and listing details can change if the seller updates or removes an ad.</p>
+        </div>
+        <div className="listing-grid">
+          {cars.filter((car) => car.adUrl && car.image).map((car) => (
+            <a className="listing-card" href={car.adUrl} target="_blank" rel="noreferrer" key={car.name}>
+              <img src={car.image} alt={`${car.year} ${car.name} from its Carzone listing`} loading="lazy" />
+              <span className="listing-copy">
+                <span><span className="car-year">{car.year}</span><strong>{car.short}</strong><small>{car.mileage} · {euro(car.price)}</small></span>
+                <span className="ad-link">Open original ad <span aria-hidden="true">↗</span></span>
+              </span>
+            </a>
+          ))}
         </div>
       </section>
 

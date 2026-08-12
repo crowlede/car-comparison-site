@@ -21,10 +21,16 @@ test("preserves the requested comparison experience", async () => {
     "Fuel",
     "Tax",
     "Insurance",
+    "Maintenance",
+    "Estimated reserve",
     "more",
     "less",
   ]) {
     assert.match(page, new RegExp(text));
   }
-  assert.doesNotMatch(page, /maintenance reserve|buying advice|how-to/i);
+  assert.match(page, /maintenance: \[650, 1050\]/);
+  assert.match(page, /maintenance: \[1300, 2300\]/);
+  assert.match(page, /maintenance: \[1200, 2100\]/);
+  assert.match(page, /maintenance: \[1400, 2500\]/);
+  assert.doesNotMatch(page, /buying advice|how-to/i);
 });

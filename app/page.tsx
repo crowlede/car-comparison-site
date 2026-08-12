@@ -12,6 +12,7 @@ type Car = {
   insurance: [number, number];
   economy: number;
   fuel: "Petrol" | "Diesel";
+  maintenance: [number, number];
   baseline?: boolean;
 };
 
@@ -26,6 +27,7 @@ const cars: Car[] = [
     insurance: [523, 523],
     economy: 6.5,
     fuel: "Petrol",
+    maintenance: [650, 1050],
     baseline: true,
   },
   {
@@ -38,6 +40,7 @@ const cars: Car[] = [
     insurance: [600, 750],
     economy: 6.7,
     fuel: "Diesel",
+    maintenance: [1300, 2300],
   },
   {
     name: "Audi Q5 2.0 TDI",
@@ -49,6 +52,7 @@ const cars: Car[] = [
     insurance: [550, 700],
     economy: 6.3,
     fuel: "Diesel",
+    maintenance: [1200, 2100],
   },
   {
     name: "Volvo XC60 2.0D",
@@ -60,6 +64,7 @@ const cars: Car[] = [
     insurance: [500, 650],
     economy: 6.4,
     fuel: "Diesel",
+    maintenance: [1400, 2500],
   },
 ];
 
@@ -73,7 +78,8 @@ export default function Home() {
     const fuelPrice = car.fuel === "Diesel" ? 1.72 : 1.76;
     const fuelCost = (annualKm / 100) * car.economy * fuelPrice;
     const insurance = (car.insurance[0] + car.insurance[1]) / 2;
-    return { ...car, fuelCost, insurance, total: fuelCost + insurance + car.tax };
+    const maintenance = (car.maintenance[0] + car.maintenance[1]) / 2;
+    return { ...car, fuelCost, insurance, maintenance, total: fuelCost + insurance + maintenance + car.tax };
   }), [annualKm]);
   const current = rows[0];
   const candidates = rows.slice(1);
@@ -107,15 +113,16 @@ export default function Home() {
       </section>
 
       <section className="comparison">
-        <div className="section-heading"><div><div className="eyebrow">Annual running costs</div><h2>The yearly picture</h2></div><p>Fuel, annual motor tax and estimated insurance. Excludes finance, parking, depreciation and repairs.</p></div>
+        <div className="section-heading"><div><div className="eyebrow">Annual running costs</div><h2>The yearly picture</h2></div><p>Fuel, annual motor tax, estimated insurance and a maintenance reserve. Excludes finance, parking and depreciation.</p></div>
         <div className="table-wrap">
           <table>
-            <thead><tr><th>Car</th><th>Fuel</th><th>Tax</th><th>Insurance</th><th>Annual total</th><th>vs Polo</th></tr></thead>
+            <thead><tr><th>Car</th><th>Fuel</th><th>Tax</th><th>Insurance</th><th>Maintenance</th><th>Annual total</th><th>vs Polo</th></tr></thead>
             <tbody>{rows.map((car) => <tr key={car.name} className={car.baseline ? "baseline" : ""}>
               <th scope="row"><span className="car-year">{car.year}</span>{car.short}<small>{car.mileage}</small></th>
               <td>{euro(car.fuelCost)}<small>{car.economy.toFixed(1)} L / 100 km</small></td>
               <td>{euro(car.tax)}</td>
               <td>{car.insurance[0] === car.insurance[1] ? euro(car.insurance) : `${euro(car.insurance[0])}–${euro(car.insurance[1])}`}</td>
+              <td>{euro(car.maintenance)}<small>Estimated reserve</small></td>
               <td className="total">{euro(car.total)}</td>
               <td className={car.baseline ? "muted" : "difference"}>{car.baseline ? "Benchmark" : costDifference(car)}</td>
             </tr>)}</tbody>

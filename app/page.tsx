@@ -25,7 +25,7 @@ type Car = {
 };
 
 const cars: Car[] = [
-  {
+{
     name: "Volkswagen Polo 1.2",
     short: "Your current car",
     year: "2008",
@@ -38,7 +38,7 @@ const cars: Car[] = [
     maintenance: [650, 1050],
     baseline: true,
   },
-  {
+{
     name: "BMW X3 xDrive20d auto",
     short: "BMW X3",
     year: "2014",
@@ -52,7 +52,7 @@ const cars: Car[] = [
     adUrl: "https://www.carzone.ie/used-cars/bmw/x3/fpa/4502188",
     image: "/car-comparison-site/bmw-x3.jpg",
   },
-  {
+{
     name: "Audi Q5 2.0 TDI",
     short: "Audi Q5",
     year: "2013",
@@ -66,92 +66,7 @@ const cars: Car[] = [
     adUrl: "https://www.carzone.ie/used-cars/audi/q5/fpa/4501126",
     image: "/car-comparison-site/audi-q5.jpg",
   },
-  {
-    name: "Volvo XC60 2.0D",
-    short: "Volvo XC60 (333k)",
-    year: "2015",
-    price: 8950,
-    mileage: "333,000 km",
-    tax: 200,
-    insurance: [500, 650],
-    economy: 6.4,
-    fuel: "Diesel",
-    maintenance: [1400, 2500],
-    adUrl: "https://www.donedeal.ie/cars-for-sale/volvo-xc60-new-nct-full-leather-serviced-/42321876",
-    alternateAdUrl: "https://www.carzone.ie/used-cars/volvo/xc60/fpa/4450220#Search",
-    image: "/car-comparison-site/volvo-xc60-2015-donedeal.jpg",
-  },
-  {
-    name: "Volvo XC60 2.0D 186k",
-    short: "Volvo XC60 (186k)",
-    year: "2014",
-    price: 8950,
-    mileage: "186,683 km",
-    tax: 200,
-    insurance: [500, 650],
-    economy: 6.4,
-    fuel: "Diesel",
-    maintenance: [1300, 2300],
-    adUrl: "https://www.donedeal.ie/cars-for-sale/2014-volvo-xc60-2-0l-diesel-new-nct-06-2027/42404123",
-    image: "/car-comparison-site/volvo-xc60-2014-low-mileage.jpg",
-  },
-  {
-    name: "Volvo XC60 D3 Lux automatic",
-    short: "Volvo XC60 D3 auto",
-    year: "2012",
-    price: 6650,
-    mileage: "263,000 km",
-    tax: 790,
-    insurance: [500, 650],
-    economy: 7.2,
-    fuel: "Diesel",
-    maintenance: [1500, 2700],
-    adUrl: "https://www.donedeal.ie/cars-for-sale/2012-volvo-xc60-d3-lux-automatic-new-nct/42564899",
-    image: "/car-comparison-site/volvo-xc60-2012-auto.jpg",
-  },
-  {
-    name: "Volvo XC60 2.4D",
-    short: "Volvo XC60 2.4D",
-    year: "2010",
-    price: 6450,
-    mileage: "223,698 km",
-    tax: 600,
-    insurance: [500, 650],
-    economy: 6.8,
-    fuel: "Diesel",
-    maintenance: [1600, 2800],
-    adUrl: "https://www.donedeal.ie/cars-for-sale/volvo-xc60-2010-full-service-history/41196023",
-    image: "/car-comparison-site/volvo-xc60-2010.jpg",
-  },
-  {
-    name: "Volvo XC60 2.0D 270k",
-    short: "Volvo XC60 (270k)",
-    year: "2014",
-    price: 5400,
-    mileage: "270,000 km",
-    tax: 200,
-    insurance: [500, 650],
-    economy: 6.4,
-    fuel: "Diesel",
-    maintenance: [1400, 2500],
-    adUrl: "https://www.donedeal.ie/cars-for-sale/2014-volvo-xc60/42407355",
-    image: "/car-comparison-site/volvo-xc60-2014-270k.jpg",
-  },
-  {
-    name: "Volkswagen Tiguan 2.0 TDI Trend & Fun",
-    short: "VW Tiguan (206k)",
-    year: "2015",
-    price: 8950,
-    mileage: "205,625 km",
-    tax: 280,
-    insurance: [500, 650],
-    economy: 5.3,
-    fuel: "Diesel",
-    maintenance: [1100, 1900],
-    adUrl: "https://www.donedeal.ie/cars-for-sale/151-vw-tiguan-2-0tdi-new-nct-warranty/41838393",
-    image: "/car-comparison-site/vw-tiguan-2015-206k.webp",
-  },
-  {
+{
     name: "Volkswagen Tiguan 2.0 TDI",
     short: "VW Tiguan Bray (217k)",
     year: "2015",
@@ -169,7 +84,7 @@ const cars: Car[] = [
     location: "Hills of Bray",
     listingDetails: "Full service history · verified history · 1-year dealer warranty · gearbox and NCT not shown · tax estimated",
   },
-  {
+{
     name: "Volvo XC60 ES",
     short: "Volvo XC60 Dublin (191k)",
     year: "2015",
@@ -186,7 +101,7 @@ const cars: Car[] = [
     location: "Long Mile Motors, Dublin 8",
     listingDetails: "Manual · NCT Aug 2027 · one owner · Irish car · verified history · AA inspected · warranty advertised",
   },
-  {
+{
     name: "Land Rover Discovery Sport",
     short: "Discovery Sport Bray (171k)",
     year: "2016",
@@ -203,7 +118,7 @@ const cars: Car[] = [
     location: "Bray Motors, Corke Abbey Avenue",
     listingDetails: "Manual · black half-leather · NCT Aug 2027 · five previous owners · AA inspected · minimum 3-month warranty",
     listingWarning: "Dealer says the timing chain was recently replaced. Ask for the invoice, reason for replacement and supporting service history.",
-  },
+  }
 ];
 
 const euro = (amount: number) =>

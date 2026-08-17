@@ -244,9 +244,7 @@ export default function Home() {
     <main>
       <section className="hero">
         <div className="eyebrow">Family EV shortlist</div>
-        <h1>
-          Compare three <em>family EVs</em>
-        </h1>
+        <h1>Compare three family EVs</h1>
         <p className="lede">
           Volvo EX30, Škoda Elroq and Volkswagen ID.4 — comparable long-range trims with Irish guide
           prices, specs and annual running costs.

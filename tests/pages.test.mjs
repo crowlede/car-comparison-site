@@ -23,6 +23,8 @@ test("preserves the EV comparison experience", async () => {
     "Insurance \\(est\\.\\)",
     "Maintenance reserve",
     "WLTP range",
+    "Width \\(body\\)",
+    "widthMm",
     "Configure",
     "best-in-row",
     "consumptionKwhPer100Km",

@@ -16,6 +16,7 @@ type EvModel = {
   zeroTo100Sec: number;
   dcChargeMin10to80: number;
   lengthMm: number;
+  widthMm: number;
   tax: number;
   insurance: [number, number];
   maintenance: [number, number];
@@ -39,6 +40,7 @@ const evModels: EvModel[] = [
     zeroTo100Sec: 5.3,
     dcChargeMin10to80: 28,
     lengthMm: 4233,
+    widthMm: 1835,
     tax: 120,
     insurance: [650, 850],
     maintenance: [400, 700],
@@ -64,6 +66,7 @@ const evModels: EvModel[] = [
     zeroTo100Sec: 6.4,
     dcChargeMin10to80: 29,
     lengthMm: 4488,
+    widthMm: 1879,
     tax: 120,
     insurance: [600, 800],
     maintenance: [400, 750],
@@ -89,6 +92,7 @@ const evModels: EvModel[] = [
     zeroTo100Sec: 6.5,
     dcChargeMin10to80: 28,
     lengthMm: 4584,
+    widthMm: 1852,
     tax: 120,
     insurance: [650, 850],
     maintenance: [450, 800],
@@ -198,6 +202,11 @@ export default function Home() {
       label: "Length",
       values: rows.map((r) => `${(r.lengthMm / 1000).toFixed(2)} m`),
       bestIndex: bestIndex(rows.map((r) => r.lengthMm)),
+    },
+    {
+      label: "Width (body)",
+      values: rows.map((r) => `${(r.widthMm / 1000).toFixed(2)} m`),
+      bestIndex: bestIndex(rows.map((r) => r.widthMm)),
     },
   ];
 
